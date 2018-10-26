@@ -20,6 +20,8 @@ class ExhibitCell: UITableViewCell {
     var exhibit: Exhibit?
     var delegate: ExhibitCellDelegate?
     
+    let spaceWidth: CGFloat = 10.0
+    
     // MARK: Static
     static let nibName = "ExhibitCell"
     static let reuseIdentifier = "ExhibitCell"
@@ -66,8 +68,20 @@ extension ExhibitCell: UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width, height: self.frame.height)
+        return CGSize(width: self.frame.width - spaceWidth, height: self.frame.height - spaceWidth)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        let totalCellWidth = self.frame.width - spaceWidth * CGFloat(imagesData.count)
+        let totalSpacingWidth = spaceWidth * CGFloat(imagesData.count - 1)
+        
+        let leftInset = (self.frame.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+    }
+    
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if let cell = collectionView.visibleCells.first {
