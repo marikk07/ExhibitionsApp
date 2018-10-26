@@ -50,7 +50,6 @@ class ExhibitCell: UITableViewCell {
         collectionView.reloadData()
     }
     
-    
 }
 
 extension ExhibitCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
