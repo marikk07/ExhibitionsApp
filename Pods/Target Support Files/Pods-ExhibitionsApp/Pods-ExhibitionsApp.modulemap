@@ -1,0 +1,6 @@
+framework module Pods_ExhibitionsApp {
+  umbrella header "Pods-ExhibitionsApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
