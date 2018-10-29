@@ -11,13 +11,13 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var exhibitsLoader: FileExhibitsLoader!
+    var exhibitsLoader: IExhibitsLoader!
     var exhibitsData: [Exhibit] = []
     
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        exhibitsLoader = FileExhibitsLoader.init(requestSender: NetworkingManager(), requestBuilder: RequestBuilder())
+        exhibitsLoader = FileExhibitsLoader(requestSender: NetworkingManager(), requestBuilder: RequestBuilder())
         exhibitsLoader.getExhibitList {[weak self] (data) in
             self?.exhibitsData = data
             self?.tableView.reloadData()
